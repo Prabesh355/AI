@@ -1,0 +1,36 @@
+### ANN (Artificial Neural Network) Implementation in Python
+
+# ANN (Artificial Neural Network) Implementation in Python using MLPClassifier
+
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import accuracy_score
+
+# Load dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Split dataset (80% train, 20% test)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create ANN model
+ann = MLPClassifier(hidden_layer_sizes=(10,), max_iter=1000, random_state=42)
+ann.fit(X_train, y_train)
+
+# Predict
+y_pred = ann.predict(X_test)
+
+# Accuracy
+acc = accuracy_score(y_test, y_pred)
+
+# Output
+print("Predictions:", y_pred)
+print("Accuracy: {:.2f}%".format(acc * 100))
+
+
+# Sample Output
+
+Predictions: [2 0 2 2 1 1 0 2 0 0 0 2 0 0 0 2 1 2 0 1 2 2 2 1 0 0 0 2 2 0]
+Accuracy: 96.67%
